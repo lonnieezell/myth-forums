@@ -54,6 +54,16 @@ class BaseManager
     }
 
     /**
+     * Returnes all records.
+     *
+     * @return array|null
+     */
+    public function all()
+    {
+        return $this->model->findAll();
+    }
+
+    /**
      * Attempts to find a single record by primary key.
      *
      * @param int $id
@@ -129,12 +139,15 @@ class BaseManager
      */
     public function create()
     {
-        return $this->model->insert(array_filter(
+        if ($this->model->insert(array_filter(
             $this->columns,
             function($var) {
                 return $var !== null;
             }
-        ));
+        )))
+        {
+            return $this->find($this->model->getInsertID());
+        }
     }
 
     /**
@@ -192,6 +205,16 @@ class BaseManager
     public function setModel(Model $model)
     {
         $this->model = $model;
+    }
+
+    /**
+     * Returns all errors the model has registered.
+     *
+     * @return array|null
+     */
+    public function errors()
+    {
+        return $this->model->errors();
     }
 
     /**

@@ -3,7 +3,7 @@
 use CodeIgniter\Config\BaseConfig;
 use Myth\Auth\Authentication\LocalAuthenticator;
 
-class Auth extends BaseConfig
+class Auth extends \Myth\Auth\Config\Auth
 {
     //--------------------------------------------------------------------
     // Libraries
