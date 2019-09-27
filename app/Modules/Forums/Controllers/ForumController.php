@@ -59,4 +59,27 @@ class ForumController extends ThemedController
             return redirect()->route('new_topic')->withInput()->with('error', $e->getMessage());
         }
     }
+
+    /**
+     * Shows a single discussion
+     *
+     * @param string $slug
+     *
+     * @return mixed
+     */
+    public function showTopic(string $slug)
+    {
+        try
+        {
+            $topic = $this->topics->find((int)$slug);
+
+            echo $this->render('topics/discussion', [
+                'topic' => $topic
+            ]);
+        }
+        catch (DataException $e)
+        {
+            return redirect()->back()->withInput()->with('error', $e->getMessage());
+        }
+    }
 }
