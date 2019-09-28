@@ -49,9 +49,51 @@ class TopicManager extends BaseManager
             $this->set($field, $request->getPost($field) ?? null);
         }
 
-        $this->set('slug', slugify($request->getPost('title')));
         $this->set('author_id', user_id());
 
-        return $this->create();
+        $this->set('html', $this->parseBody(
+            $request->getPost('body')),
+            $request->getPost('parser')
+        );
+
+        $topic = $this->create();
+
+        $this->set('slug', $topic->id .'-'. slugify($request->getPost('title')));
+        $topic = $this->updateInstance($topic);
+
+        return $topic;
+    }
+
+    /**
+     * @param string|null $body
+     * @param string|null $parser
+     *
+     * @return string
+     */
+    protected function parseBody(string $body = null, string $parser = null): string
+    {
+        if (empty($body))
+        {
+            return '';
+        }
+
+        $useParser = ! empty($parser)
+            ? $parser
+            : config('Parsers')->defaultParser;
+
+        $parsers = config('Parsers')->availableParsers;
+
+        // No parser found - then should be raw text,
+        // just do a simple formatting to preserve returns.
+        if (! isset($parsers[$useParser]))
+        {
+            return nl2br($body);
+        }
+
+        $useParser = $parsers[$useParser];
+
+        $parser = new $useParser();
+
+        return $parser->parse($body);
     }
 }

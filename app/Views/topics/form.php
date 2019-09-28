@@ -23,6 +23,20 @@
 
     <hr>
 
+    <!-- Parser to User -->
+    <div class="form-group row">
+        <label for="parser" class="col-sm-2 col-form-label">Body Format</label>
+        <div class="col-2">
+            <select name="parser" class="form-control">
+                <?php foreach($parsers as $parser => $class) : ?>
+                    <option value="<?= $parser ?>"><?= $parser ?></option>
+                <?php endforeach ?>
+            </select>
+        </div>
+    </div>
+
+    <hr>
+
     <div class="text-right">
         <input type="submit" class="btn btn-outline-success" value="Save Topic">
     </div>

@@ -34,7 +34,9 @@ class ForumController extends ThemedController
      */
     public function newTopic()
     {
-        echo $this->render('topics/form');
+        echo $this->render('topics/form', [
+            'parsers' => config('Parsers')->availableParsers,
+        ]);
     }
 
     /**

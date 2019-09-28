@@ -186,7 +186,7 @@ class BaseManager
             )
         );
 
-        if (! $this->model->update($instance))
+        if (! $this->model->save($instance))
         {
             throw DataException::forProblemSaving($this->model->errors(true));
         }

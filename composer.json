@@ -7,7 +7,8 @@
     "require": {
         "php": ">=7.2",
         "codeigniter4/codeigniter4": "dev-develop",
-        "myth/auth": "^1.0@beta"
+        "myth/auth": "^1.0@beta",
+        "erusev/parsedown": "^1.8@beta"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.0",
