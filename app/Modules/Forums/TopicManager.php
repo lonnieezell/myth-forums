@@ -25,7 +25,7 @@ class TopicManager extends BaseManager
     public function list(IncomingRequest $request)
     {
         $sort = $request->getVar('sort') ?? 'newest';
-        $dir = $request->getVar('dir') ?? 'asc';
+        $dir = $request->getVar('dir') ?? 'desc';
 
         $topics = $this->model
             ->{$sort}($dir)

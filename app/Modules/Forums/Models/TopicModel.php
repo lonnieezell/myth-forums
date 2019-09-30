@@ -26,7 +26,7 @@ class TopicModel extends Model
      */
     public function newest()
     {
-        $this->orderBy('created_at', 'asc');
+        $this->orderBy('created_at', 'desc');
 
         return $this;
     }
