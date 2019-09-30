@@ -52,9 +52,9 @@ class TopicManager extends BaseManager
         $this->set('author_id', user_id());
 
         $this->set('html', $this->parseBody(
-            $request->getPost('body')),
+            $request->getPost('body'),
             $request->getPost('parser')
-        );
+        ));
 
         $topic = $this->create();
 
