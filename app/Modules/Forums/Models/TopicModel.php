@@ -17,6 +17,8 @@ class TopicModel extends Model
 
     protected $returnType = Topic::class;
 
+    protected $useTimestamps = true;
+
     /**
      * Scope method to sort results by newest first.
      *
