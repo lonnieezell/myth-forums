@@ -29,6 +29,8 @@ class TopicManager extends BaseManager
 
         $topics = $this->model
             ->{$sort}($dir)
+            ->select('topics.*, users.username')
+            ->join('users', 'users.id = topics.author_id')
             ->paginate(20);
 
         return $topics;
