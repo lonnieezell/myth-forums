@@ -67,7 +67,7 @@ class TopicManager extends BaseManager
 
         $userIds = array_unique($userIds);
 
-        $userModel = service('userModel');
+        $userModel = model(UserModel::class);
 
         $users = $userModel->find($userIds);
 

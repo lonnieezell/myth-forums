@@ -1,6 +1,6 @@
 <?php namespace Config;
 
-use App\Models\UserModel;
+use App\Models\ModelFactory;
 use CodeIgniter\Config\Services as CoreServices;
 use CodeIgniter\Config\BaseConfig;
 
@@ -26,15 +26,15 @@ class Services extends CoreServices
      *
      * @param bool $getShared
      *
-     * @return UserModel|mixed
+     * @return ModelFactory
      */
-    public static function userModel($getShared = true)
+    public static function models($getShared = true)
     {
         if ($getShared)
         {
-            return static::getSharedInstance('userModel');
+            return static::getSharedInstance('models');
         }
 
-        return new UserModel();
+        return new ModelFactory();
     }
 }
