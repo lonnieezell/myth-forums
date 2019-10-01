@@ -75,6 +75,8 @@ class ForumController extends ThemedController
         {
             $topic = $this->topics->find((int)$slug);
 
+            $this->topics->incrementViews($topic);
+
             echo $this->render('topics/discussion', [
                 'topic' => $topic
             ]);

@@ -123,6 +123,20 @@ class TopicManager extends BaseManager
     }
 
     /**
+     * Increment the view count for a single topic.
+     *
+     * @param Topic $topic
+     *
+     * @return bool
+     */
+    public function incrementViews(Topic $topic)
+    {
+        return $this->model
+            ->where('id', $topic->id)
+            ->increment('views', 1);
+    }
+
+    /**
      * @param string|null $body
      * @param string|null $parser
      *
