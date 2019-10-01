@@ -47,6 +47,11 @@ class BaseManager
      */
     protected $useSelectors = false;
 
+    /**
+     * @var array|null
+     */
+    protected $afterFind;
+
     public function __construct()
     {
         helper('text');
@@ -80,7 +85,7 @@ class BaseManager
             throw DataException::forRecordNotFound($this->objectType);
         }
 
-        return $row;
+        return $this->trigger('afterFind', $row);
     }
 
     /**
@@ -195,7 +200,6 @@ class BaseManager
     }
 
 
-
     /**
      * Pass in the model that will be used by
      * the manager instance.
@@ -231,6 +235,30 @@ class BaseManager
         {
             $this->columns[$column] = null;
         }
+    }
+
+    /**
+     * Simple event handler for child managers
+     *
+     * @param string $event
+     * @param null   $data
+     *
+     * @return |null
+     */
+    protected function trigger(string $event, $data = null)
+    {
+        if (empty($data) || empty($this->$event)) {
+            return $data;
+        }
+
+        foreach ($this->$event as $method)
+        {
+            if (method_exists($this, $method)) {
+                $data = $this->$method($data);
+            }
+        }
+
+        return $data;
     }
 
     /**

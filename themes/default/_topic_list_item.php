@@ -1,4 +1,7 @@
 <div class="topic row">
+    <div class="col-sm-1">
+        <img src="<?= $topic->author->avatar(60) ?>" alt="<?= esc($topic->username, 'attr') ?>" class="avatar">
+    </div>
     <div class="col">
         <p class="title">
             <a href="/forum/discussion/<?= $topic->slug ?>">
@@ -12,3 +15,5 @@
         <p class="snippet"><?= $topic->snippet() ?></p>
     </div>
 </div>
+
+

@@ -164,4 +164,29 @@ class User extends Entity
 
         return $this;
 	}
+
+    /**
+     * Avatar URL. Provides default imange through Gravatar
+     * if none has been set locally.
+     *
+     * @param int $size
+     *
+     * @return mixed
+     */
+    public function avatar(int $size=120)
+    {
+        // If they've uploaded one here - use it!
+        if (! empty($this->attributes['avatar'])) {
+            return $this->attributes['avatar'];
+        }
+
+        // Otherwise, use gravatar
+        $url = 'https://www.gravatar.com/avatar/';
+
+        $hash = md5(trim(mb_strtolower($this->email)));
+
+        $url .= $hash ."?s={$size}&d=wavatar";
+
+        return $url;
+	}
 }

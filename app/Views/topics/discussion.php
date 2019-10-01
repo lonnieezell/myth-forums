@@ -2,18 +2,27 @@
 
 <?= $this->section('content') ?>
 
-    <div class="topic-header">
-        <h1 class="topic-title"><?= esc($topic->title) ?></h1>
-
-        <div class="meta">
-            By Author Name on <?= $topic->created_at->format('M j, Y') ?>
-        </div>
-    </div>
-
     <div class="topic">
+        <div class="row">
+            <div class="col-sm-2">
+                <img src="<?= $topic->author->avatar(120) ?>" alt="<?= esc($topic->author->username, 'attr') ?>" class="avatar-large">
+            </div>
+            <div class="col">
 
+                <div class="topic-header">
+                    <h1 class="topic-title"><?= esc($topic->title) ?></h1>
 
-        <?= $topic->html ?? esc($topic->body, 'html') ?>
-    </div>
+                    <div class="meta">
+                        By Author Name on <?= $topic->created_at->format('M j, Y') ?>
+                    </div>
+                </div>
+
+                <div class="topic-body">
+                    <?= $topic->html ?? esc($topic->body, 'html') ?>
+                </div>
+
+            </div>
+        </div>
+
 
 <?= $this->endSection() ?>

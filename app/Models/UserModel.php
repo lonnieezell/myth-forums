@@ -1,7 +1,7 @@
 <?php namespace App\Models;
 
 use CodeIgniter\Model;
-use Myth\Auth\Entities\User;
+use App\Entities\User;
 
 class UserModel extends Model
 {
@@ -14,6 +14,7 @@ class UserModel extends Model
     protected $allowedFields = [
         'email', 'username', 'password_hash', 'reset_hash', 'reset_start_time', 'activate_hash',
         'status', 'status_message', 'active', 'force_pass_reset', 'permissions', 'deleted_at',
+        'avatar',
     ];
 
     protected $useTimestamps = true;

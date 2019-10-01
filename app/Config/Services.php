@@ -1,5 +1,6 @@
 <?php namespace Config;
 
+use App\Models\UserModel;
 use CodeIgniter\Config\Services as CoreServices;
 use CodeIgniter\Config\BaseConfig;
 
@@ -20,14 +21,20 @@ require_once SYSTEMPATH . 'Config/Services.php';
  */
 class Services extends CoreServices
 {
+    /**
+     * Singleton for UserModel
+     *
+     * @param bool $getShared
+     *
+     * @return UserModel|mixed
+     */
+    public static function userModel($getShared = true)
+    {
+        if ($getShared)
+        {
+            return static::getSharedInstance('userModel');
+        }
 
-	//    public static function example($getShared = true)
-	//    {
-	//        if ($getShared)
-	//        {
-	//            return static::getSharedInstance('example');
-	//        }
-	//
-	//        return new \CodeIgniter\Example();
-	//    }
+        return new UserModel();
+    }
 }

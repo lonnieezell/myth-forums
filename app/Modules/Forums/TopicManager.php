@@ -1,11 +1,15 @@
 <?php namespace Myth\Forums;
 
 use App\Core\BaseManager;
+use App\Models\UserModel;
 use CodeIgniter\HTTP\IncomingRequest;
+use Myth\Forums\Entities\Topic;
 use Myth\Forums\Models\TopicModel;
 
 class TopicManager extends BaseManager
 {
+    protected $afterFind = ['populateUser'];
+
     public function __construct()
     {
         $this->model = new TopicModel();
@@ -33,7 +37,58 @@ class TopicManager extends BaseManager
             ->join('users', 'users.id = topics.author_id')
             ->paginate(20);
 
+        $topics = $this->populateUser($topics);
+
         return $topics;
+    }
+
+    /**
+     * Populates the Author for many topics.
+     *
+     * @param array $topics
+     *
+     * @return array
+     */
+    public function populateUser($topics = null)
+    {
+        if (empty($topics)) return $topics;
+
+        $userIds = [];
+        $wasSingle = false;
+
+        if ($topics instanceof Topic) {
+            $topics = [$topics];
+            $wasSingle = true;
+        }
+
+        foreach($topics as $topic) {
+            $userIds[] = $topic->author_id;
+        }
+
+        $userIds = array_unique($userIds);
+
+        $userModel = service('userModel');
+
+        $users = $userModel->find($userIds);
+
+        // Index by id
+        $indexedUsers = [];
+
+        foreach($users as $user) {
+            $indexedUsers[$user->id] = $user;
+        }
+
+        foreach ($topics as $topic) {
+            if (empty($topic->author_id)) {
+                continue;
+            }
+
+            $topic->author = $indexedUsers[$topic->author_id];
+        }
+
+        return $wasSingle
+            ? array_pop($topics)
+            : $topics;
     }
 
     /**
@@ -41,6 +96,7 @@ class TopicManager extends BaseManager
      *
      * @return bool|int|string
      * @throws \ReflectionException
+     * @throws \App\Exceptions\DataException
      */
     public function createFromRequest(IncomingRequest $request)
     {
