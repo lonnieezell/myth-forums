@@ -8,7 +8,7 @@ module.exports = {
     mode: 'development',
     entry: ['./themes/default/js/index.js', './themes/default/scss/index.scss'],
     output: {
-        filename: 'admin.js',
+        filename: 'front.js',
         path: path.resolve(__dirname, 'public/assets'),
         publicPath: '/assets'
     },
@@ -21,6 +21,15 @@ module.exports = {
                     MiniCssExtractPlugin.loader,
                     "css-loader",
                     "sass-loader"
+                ]
+            },
+            {
+                // CSS
+                test: /\.css$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    "css-loader",
+                    "style-loader"
                 ]
             },
             {   // Babel
