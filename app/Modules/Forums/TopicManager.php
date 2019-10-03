@@ -5,6 +5,7 @@ use App\Models\UserModel;
 use CodeIgniter\HTTP\IncomingRequest;
 use Myth\Forums\Entities\Topic;
 use Myth\Forums\Models\TopicModel;
+use Myth\Parsers\RenderPipeline;
 
 class TopicManager extends BaseManager
 {
@@ -101,6 +102,7 @@ class TopicManager extends BaseManager
     public function createFromRequest(IncomingRequest $request)
     {
         helper('text');
+        $pipeline = new RenderPipeline();
 
         foreach ($this->model->allowedFields as $field)
         {
@@ -109,7 +111,7 @@ class TopicManager extends BaseManager
 
         $this->set('author_id', user_id());
 
-        $this->set('html', $this->parseBody(
+        $this->set('html', $pipeline->render(
             $request->getPost('body'),
             $request->getPost('parser')
         ));
@@ -134,38 +136,5 @@ class TopicManager extends BaseManager
         return $this->model
             ->where('id', $topic->id)
             ->increment('views', 1);
-    }
-
-    /**
-     * @param string|null $body
-     * @param string|null $parser
-     *
-     * @return string
-     */
-    protected function parseBody(string $body = null, string $parser = null): string
-    {
-        if (empty($body))
-        {
-            return '';
-        }
-
-        $useParser = ! empty($parser)
-            ? $parser
-            : config('Parsers')->defaultParser;
-
-        $parsers = config('Parsers')->availableParsers;
-
-        // No parser found - then should be raw text,
-        // just do a simple formatting to preserve returns.
-        if (! isset($parsers[$useParser]))
-        {
-            return nl2br($body);
-        }
-
-        $useParser = $parsers[$useParser];
-
-        $parser = new $useParser();
-
-        return $parser->parse($body);
     }
 }
