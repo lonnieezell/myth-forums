@@ -31,7 +31,7 @@ class Auth extends \Myth\Auth\Config\Auth
 
     // Fields that are available to be used as credentials for login.
     public $validFields = [
-        'email', 'username'
+        'email'
     ];
 
     //--------------------------------------------------------------------

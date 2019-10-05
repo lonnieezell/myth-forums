@@ -10035,5 +10035,33 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
+.topic-list-item {
+  padding: 12px 8px;
+  border-radius: 4px;
+  transition: background-color 0.3s; }
+  .topic-list-item:hover {
+    background: #eee; }
+  .topic-list-item a {
+    color: #222; }
+  .topic-list-item .avatar {
+    width: 40px;
+    border: 2px solid white;
+    border-radius: 20px; }
+  .topic-list-item h5 {
+    margin-bottom: 0; }
+  .topic-list-item .meta {
+    font-size: 0.85rem;
+    color: #aaa;
+    display: block;
+    margin-bottom: 0.5em; }
+  .topic-list-item .snippet {
+    font-size: 12px;
+    line-height: 1.5;
+    display: block;
+    margin-bottom: 0; }
 
+.avatar-sm {
+  width: 30px;
+  border: 2px solid white;
+  border-radius: 15px; }
 

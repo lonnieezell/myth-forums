@@ -2,6 +2,8 @@
 
 <?= $this->include('_navbar') ?>
 
+<?= $this->include('_notices') ?>
+
 <div class="container">
     <br>
 

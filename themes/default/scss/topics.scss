@@ -1,0 +1,41 @@
+@import 'variables';
+
+// TOPIC LIST
+.topic-list-item {
+
+  padding: 12px 8px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background: #eee;
+  }
+
+  a {
+    color: #222;
+  }
+
+  .avatar {
+    width: 40px;
+    border: 2px solid white;
+    border-radius: 20px;
+  }
+
+  h5 {
+    margin-bottom: 0;
+  }
+
+  .meta {
+    font-size: 0.85rem;
+    color: #aaa;
+    display: block;
+    margin-bottom: 0.5em;
+  }
+
+  .snippet {
+    font-size: 12px;
+    line-height: 1.5;
+    display: block;
+    margin-bottom: 0;
+  }
+}

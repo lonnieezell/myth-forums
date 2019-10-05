@@ -2,8 +2,12 @@
 
 use CodeIgniter\Entity;
 
-class User extends Entity
+class User extends \Myth\Auth\Entities\User
 {
+    const DOB_DISPLAY_BOTH = 1;
+    const DOB_DISPLAY_NONE = 2;
+    const DOB_DISPLAY_AGE = 3;
+
     /**
      * Maps names used in sets and gets against unique
      * names within the class, allowing independence from
@@ -29,6 +33,13 @@ class User extends Entity
         'active'           => 'boolean',
         'force_pass_reset' => 'boolean',
     ];
+
+    /**
+     * User Settings cache.
+     *
+     * @var array
+     */
+    protected $settings;
 
 	/**
 	 * Automatically hashes the password when set.
@@ -188,5 +199,40 @@ class User extends Entity
         $url .= $hash ."?s={$size}&d=wavatar";
 
         return $url;
+	}
+
+    /**
+     * Returns the URL to this users profile.
+     *
+     * @return string
+     */
+    public function link()
+    {
+        return base_url('/members/'. $this->username);
+	}
+
+    /**
+     * Returns a user-specific setting.
+     *
+     * @param string $key
+     *
+     * @return mixed|null
+     */
+    public function setting(string $key)
+    {
+        if ($this->settings === null)
+        {
+            $this->settings = db_connect()->table('user_settings')
+                ->where('user_id', $this->id)
+                ->get()
+                ->getResultArray();
+
+            if (! empty($this->settings))
+            {
+                $this->settings = array_pop($this->settings);
+            }
+        }
+
+        return $this->settings[$key];
 	}
 }
