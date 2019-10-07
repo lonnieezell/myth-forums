@@ -208,7 +208,7 @@ class User extends \Myth\Auth\Entities\User
      */
     public function link()
     {
-        return base_url('/members/'. $this->username);
+        return route_to('profile', $this->username);
 	}
 
     /**

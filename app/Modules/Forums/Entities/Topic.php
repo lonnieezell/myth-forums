@@ -22,4 +22,14 @@ class Topic extends Entity
 
         return word_limiter(strip_tags($this->html), $words);
     }
+
+    /**
+     * Link to this topic's discussion page.
+     *
+     * @return string
+     */
+    public function link()
+    {
+        return route_to('topic', $this->slug);
+    }
 }

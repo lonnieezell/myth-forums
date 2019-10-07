@@ -13,7 +13,7 @@
                     <h1 class="topic-title"><?= esc($topic->title) ?></h1>
 
                     <div class="meta">
-                        By Author Name on <?= $topic->created_at->format('M j, Y') ?>
+                        By <a href="<?= $topic->author->link() ?>"><?= $topic->author->username ?></a> on <?= $topic->created_at->format('M j, Y') ?>
                     </div>
                 </div>
 
