@@ -1,5 +1,6 @@
 <?php namespace App\Entities;
 
+use App\Models\CountryModel;
 use CodeIgniter\Entity;
 
 class User extends \Myth\Auth\Entities\User
@@ -234,5 +235,32 @@ class User extends \Myth\Auth\Entities\User
         }
 
         return $this->settings[$key];
+	}
+
+    /**
+     * Formats a location string based on
+     * available location/country
+     */
+    public function locationString()
+    {
+        $parts = [];
+
+        if (! empty($this->setting('location')))
+        {
+            $parts[] = $this->setting('location');
+        }
+
+        if (! empty($this->setting('country')))
+        {
+            $countries = model(CountryModel::class);
+            $country = $countries->where('code', $this->setting('country'))->findColumn('name');
+
+            if ($country !== null)
+            {
+                $parts[] = $country[0];
+            }
+        }
+
+        return implode(', ', $parts);
 	}
 }
