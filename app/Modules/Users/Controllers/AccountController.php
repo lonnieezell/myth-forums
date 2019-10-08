@@ -1,6 +1,9 @@
 <?php namespace Myth\Users\Controllers;
 
 use App\Core\ThemedController;
+use App\Exceptions\DataException;
+use App\Models\UserModel;
+use Myth\Users\UserManager;
 
 class AccountController extends ThemedController
 {
@@ -12,5 +15,40 @@ class AccountController extends ThemedController
         echo $this->render('users/account', [
             'user' => user()
         ]);
+    }
+
+    /**
+     * Save the current user's account settings.
+     *
+     * @return mixed
+     */
+    public function save()
+    {
+        $this->validate([
+            'dob' => 'permit_empty|date',
+            'dob_privacy' => 'permit_empty|in_list[1,2,3]',
+            'website' => 'permit_empty|valid_url',
+            'location' => 'permit_empty|max_length[255]',
+            'bio' => 'permit_empty',
+        ]);
+
+        try
+        {
+            $user = user();
+            $manager = new UserManager();
+
+            $errors = $manager->saveSettings($user, $this->request->getPost());
+
+            if ($errors !== true)
+            {
+                return redirect()->back()->withInput()->with('errors', $errors);
+            }
+
+            return redirect()->back()->with('message', lang('messages.resourceSaved', ['Account']));
+        }
+        catch (DataException $e)
+        {
+            return redirect()->back()->withInput()->with('error', $e->getMessage());
+        }
     }
 }
