@@ -46,6 +46,20 @@
                         <p class="small text-muted">Where in the world do you live? </p>
                     </div>
 
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <select name="country" class="form-control">
+                            <option value="0">Select a country...</option>
+                            <?php if (isset($countries)) : ?>
+                                <?php foreach ($countries as $country) : ?>
+                                    <option value="<?= $country->code ?>" <?= old('country', isset($user) ? $user->setting('country') : '') == $country->code ? 'selected' : '' ?>>
+                                        <?= $country->name ?>
+                                    </option>
+                                <?php endforeach ?>
+                            <?php endif ?>
+                        </select>
+                    </div>
+
                     <!-- Bio -->
                     <div class="form-group">
                         <label for="bio">Bio</label>

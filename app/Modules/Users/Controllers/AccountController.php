@@ -2,6 +2,7 @@
 
 use App\Core\ThemedController;
 use App\Exceptions\DataException;
+use App\Models\CountryModel;
 use App\Models\UserModel;
 use Myth\Users\UserManager;
 
@@ -12,8 +13,11 @@ class AccountController extends ThemedController
      */
     public function index()
     {
+        $countries = model(CountryModel::class);
+
         echo $this->render('users/account', [
-            'user' => user()
+            'user' => user(),
+            'countries' => $countries->findAll(),
         ]);
     }
 

@@ -14,7 +14,7 @@ class CreateUserSettingsTable extends Migration
             'dob_privacy' => ['type' => 'tinyint', 'constraint' => 1, 'null' => true, 'default' => 3],
             'website' => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
             'location' => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
-            'country' => ['type' => 'integer', 'constraint' => 3, 'unsigned' => true, 'null' => true],
+            'country' => ['type' => 'char', 'constraint' => 3, 'null' => true],
             'lotitude' => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
             'longitude' => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
             'bio' => ['type' => 'text', 'null' => true],
