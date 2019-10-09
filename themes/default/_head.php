@@ -9,6 +9,7 @@
 
     <?= $meta->tags() ?>
 
+    <script src="https://kit.fontawesome.com/9ce245a629.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="<?= asset('main.css') ?>">
     <?php $this->renderSection('styles') ?>
 </head>

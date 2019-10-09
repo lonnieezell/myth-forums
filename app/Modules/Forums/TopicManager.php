@@ -137,4 +137,21 @@ class TopicManager extends BaseManager
             ->where('id', $topic->id)
             ->increment('views', 1);
     }
+
+    /**
+     * Find the most recent topics for a single user.
+     *
+     * @param int $userId
+     * @param int $limit
+     *
+     * @return \CodeIgniter\Database\BaseBuilder
+     */
+    public function recentForUser(int $userId, int $limit = 15)
+    {
+        return $this->model
+            ->where('author_id', $userId)
+            ->orderBy('created_at', 'desc')
+            ->limit($limit)
+            ->findAll();
+    }
 }

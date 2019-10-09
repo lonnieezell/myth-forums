@@ -5,7 +5,7 @@
     <div class="topic">
         <div class="row">
             <div class="col-sm-2">
-                <img src="<?= $topic->author->avatar(120) ?>" alt="<?= esc($topic->author->username, 'attr') ?>" class="avatar-large">
+                <img src="<?= $topic->author->avatar(120) ?>" alt="<?= esc($topic->author->username, 'attr') ?>" class="avatar-lg">
             </div>
             <div class="col">
 

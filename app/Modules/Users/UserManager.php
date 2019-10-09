@@ -44,4 +44,17 @@ class UserManager extends BaseManager
             ->set($data)
             ->update();
     }
+
+    public function findWithStats(string $username)
+    {
+        $select = "users.*, 
+            (select count('id') from topics where author_id = users.id) as topicCount,
+            (select count('id') from posts where author_id = users.id) as postCount
+        ";
+
+        return $this->model
+            ->select($select)
+            ->where('username', $username)
+            ->first();
+    }
 }
