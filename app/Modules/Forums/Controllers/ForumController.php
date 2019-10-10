@@ -2,6 +2,7 @@
 
 use App\Core\ThemedController;
 use App\Exceptions\DataException;
+use Myth\Forums\PostManager;
 use Myth\Forums\TopicManager;
 
 class ForumController extends ThemedController
@@ -84,6 +85,32 @@ class ForumController extends ThemedController
         catch (DataException $e)
         {
             return redirect()->back()->withInput()->with('error', $e->getMessage());
+        }
+    }
+
+    /**
+     * Saves a new reply to a post
+     *
+     * @param string $topicSlug
+     */
+    public function postReply(string $topicSlug)
+    {
+        $posts = new PostManager();
+
+        try {
+            $topic = $this->topics->find((int)$topicSlug);
+            $post = $posts->createFromRequest($this->request, $topic);
+
+            if (empty($post))
+            {
+                return redirect()->route('new_topic')->withInput()->with('errors', $posts->errors());
+            }
+
+            return redirect()->route('topic', [$topicSlug])->with('message', lang('messages.resourceSaved', ['Reply']));
+        }
+        catch (DataException $e)
+        {
+            return redirect()->route('new_topic')->withInput()->with('error', $e->getMessage());
         }
     }
 }

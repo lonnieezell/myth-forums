@@ -23,6 +23,9 @@
 
             </div>
         </div>
+    </div>
+
+    <?= $this->include('forums/_new_post') ?>
 
 
 <?= $this->endSection() ?>

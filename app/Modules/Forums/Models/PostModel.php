@@ -6,5 +6,7 @@ class PostModel extends Model
 {
     protected $table = 'posts';
 
-    protected $allowedFields = [];
+    protected $allowedFields = ['author_id', 'topic_id', 'slug', 'body', 'html', 'parser', 'views'];
+
+    protected $useTimestamps = true;
 }
