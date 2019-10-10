@@ -56,7 +56,7 @@ class RenderPipeline
     {
         $regex = "/@+([\w\.]+)/";
 
-        $body = preg_replace($regex, '<a href="/forum/members/$1">$0</a>', $body);
+        $body = preg_replace($regex, '<a href="/members/$1">$0</a>', $body);
 
         return $body;
     }
