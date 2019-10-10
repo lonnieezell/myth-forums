@@ -27,7 +27,7 @@
             <ul class="list-unstyled">
                 <li>
                     <a href="#">
-                        <i class="far fa-comment"></i>
+                        <i class="fas fa-bars"></i>
                         <?= $user->topicCount ?? 0 ?> Discussions
                     </a>
                 </li>
@@ -49,7 +49,7 @@
         </div>
 
         <div class="col">
-            <h2>Recent Stuff</h2>
+            <?= $recent ?>
         </div>
     </div>
 

@@ -144,14 +144,19 @@ class TopicManager extends BaseManager
      * @param int $userId
      * @param int $limit
      *
-     * @return \CodeIgniter\Database\BaseBuilder
+     * @return array
      */
     public function recentForUser(int $userId, int $limit = 15)
     {
-        return $this->model
+        $topics = $this->model
+            ->select('topics.*, users.username')
+            ->join('users', 'users.id = topics.author_id')
             ->where('author_id', $userId)
-            ->orderBy('created_at', 'desc')
+            ->orderBy('topics.created_at', 'desc')
             ->limit($limit)
             ->findAll();
+        $topics = $this->populateUser($topics);
+
+        return $topics;
     }
 }

@@ -5,7 +5,7 @@
     <?php if (isset($topics) && count($topics)) : ?>
         <div class="topics">
         <?php foreach($topics as $topic) : ?>
-            <?= $this->setData(['topic' => $topic])->include('_topic_list_item') ?>
+            <?= $this->setData(['topic' => $topic])->include('forums/_topic_list_item') ?>
         <?php endforeach ?>
         </div>
     <?php else : ?>

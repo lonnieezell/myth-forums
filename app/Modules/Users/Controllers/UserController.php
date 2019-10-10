@@ -31,15 +31,15 @@ class UserController extends ThemedController
                     break;
                 default:
                     $topics = new TopicManager();
-                    $records = $topics->recentForUser($user->id, 10);
-                    $view = 'forums/_topic_list_item';
+                    $recent = $this->render('users/_recent_topics', [
+                        'topics' => $topics->recentForUser($user->id, 10)
+                    ]);
                     break;
             }
 
             echo $this->render('users/show', [
                 'user' => $user,
-                'records' => $records,
-                'view' => $view,
+                'recent' => $recent ?? null,
             ]);
         }
         catch (DataException $e)
