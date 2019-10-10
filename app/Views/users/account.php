@@ -90,6 +90,20 @@
                         <input type="checkbox" class="custom-control-input" name="allow_pm" id="allow_pm" <?= old('allow_pm', isset($user) && $user->setting('allow_pm')) == 1 ? 'checked' : '' ?>>
                         <label class="custom-control-label" for="allow_pm">Allow private messages</label>
                     </div>
+
+                    <hr>
+
+                    <!-- Parser -->
+                    <div class="form-group">
+                        <label for="country">Post Markup Parser</label>
+                        <select name="parser" class="form-control">
+                            <option value="0">Select a parser...</option>
+                            <option value="Markdown" <?= old('parser', $user->setting('parser')) == 'Markdown' ? 'selected' : '' ?>>Markdown</option>
+                            <option value="BBCode" <?= old('parser', $user->setting('parser')) == 'BBCode' ? 'selected' : '' ?>>BBCode</option>
+                        </select>
+                        <p class="small text-muted">Specifies the markup you can use when editing long text fields.</p>
+                    </div>
+
                 </fieldset>
             </div>
         </div>

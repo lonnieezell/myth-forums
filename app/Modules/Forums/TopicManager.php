@@ -103,6 +103,7 @@ class TopicManager extends BaseManager
     {
         helper('text');
         $pipeline = new RenderPipeline();
+        $parser = user()->setting('parser');
 
         foreach ($this->model->allowedFields as $field)
         {
@@ -110,10 +111,11 @@ class TopicManager extends BaseManager
         }
 
         $this->set('author_id', user_id());
+        $this->set('parser', $parser);
 
         $this->set('html', $pipeline->render(
             $request->getPost('body'),
-            $request->getPost('parser')
+            $parser
         ));
 
         $topic = $this->create();

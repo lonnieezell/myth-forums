@@ -24,6 +24,7 @@ class UserManager extends BaseManager
     public function saveSettings(User $user, array $post)
     {
         $data = [
+            'parser' => $post['parser'] ?? null,
             'dob' => $post['dob'] ?? null,
             'dob_privacy' => $post['dob_privacy'] ?? null,
             'website' => $post['website'] ?? null,
