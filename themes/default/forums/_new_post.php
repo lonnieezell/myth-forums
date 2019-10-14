@@ -1,4 +1,5 @@
 <hr>
+<?php if(user() !== null) : ?>
 <form action="<?= route_to('post-reply', $topic->slug) ?>" method="post">
     <?= csrf_field() ?>
 
@@ -19,3 +20,8 @@
         </div>
     </div>
 </form>
+<?php else : ?>
+
+<p><a href="<?= route_to('login') ?>">Login</a> to post a reply.</p>
+
+<?php endif ?>
