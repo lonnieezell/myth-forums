@@ -332,5 +332,10 @@ class BaseManager
         {
             return $this->columns[$key];
         }
+
+        if (property_exists($this, $key))
+        {
+            return $this->$key;
+        }
     }
 }

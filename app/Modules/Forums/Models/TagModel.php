@@ -1,10 +1,13 @@
 <?php namespace Myth\Forums\Models;
 
 use CodeIgniter\Model;
+use Myth\Forums\Entities\Tag;
 
 class TagModel extends Model
 {
-    protected $table = 'forum_tags';
+    protected $table = 'tags';
 
-    protected $allowedFields = [];
+    protected $allowedFields = ['title', 'slug', 'description', 'parent_id', 'order', 'is_structural'];
+
+    protected $returnType = Tag::class;
 }

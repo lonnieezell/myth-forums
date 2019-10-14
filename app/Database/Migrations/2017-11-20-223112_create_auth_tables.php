@@ -161,12 +161,12 @@ class CreateAuthTables extends Migration
 //        if ($this->db->DBDriver != 'SQLite3')
 //        {
             $this->forge->dropForeignKey('auth_tokens', 'auth_tokens_user_id_foreign');
-            $this->forge->dropForeignKey('auth_groups_permissions', 'auth_groups_permissions_group_id_foreign');
-            $this->forge->dropForeignKey('auth_groups_permissions', 'auth_groups_permissions_permission_id_foreign');
-            $this->forge->dropForeignKey('auth_groups_users', 'auth_groups_users_group_id_foreign');
-            $this->forge->dropForeignKey('auth_groups_users', 'auth_groups_users_user_id_foreign');
-            $this->forge->dropForeignKey('auth_users_permissions', 'auth_users_permissions_user_id_foreign');
-            $this->forge->dropForeignKey('auth_users_permissions', 'auth_users_permissions_permission_id_foreign');
+//            $this->forge->dropForeignKey('auth_groups_permissions', 'auth_groups_permissions_group_id_foreign');
+//            $this->forge->dropForeignKey('auth_groups_permissions', 'auth_groups_permissions_permission_id_foreign');
+//            $this->forge->dropForeignKey('auth_groups_users', 'auth_groups_users_group_id_foreign');
+//            $this->forge->dropForeignKey('auth_groups_users', 'auth_groups_users_user_id_foreign');
+//            $this->forge->dropForeignKey('auth_users_permissions', 'auth_users_permissions_user_id_foreign');
+//            $this->forge->dropForeignKey('auth_users_permissions', 'auth_users_permissions_permission_id_foreign');
 //        }
 
 		$this->forge->dropTable('users', true);
