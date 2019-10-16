@@ -18,12 +18,19 @@ class Auth extends \Myth\Auth\Config\Auth
     //--------------------------------------------------------------------
 
     public $views = [
-        'login'     => 'Myth\Auth\Views\login',
-        'register'  => 'Myth\Auth\Views\register',
-        'forgot'    => 'Myth\Auth\Views\forgot',
-        'reset'     => 'Myth\Auth\Views\reset',
-        'emailForgot' => 'Myth\Auth\Views\emails\forgot',
+        'login'     => 'auth/login',
+        'register'  => 'auth/register',
+        'forgot'    => 'auth/forgot',
+        'reset'     => 'auth/reset',
+        'emailForgot' => 'auth/emails\forgot',
+        'emailActivation' => 'auth/emails/activation',
     ];
+
+    //--------------------------------------------------------------------
+    // Layout for the views to extend
+    //--------------------------------------------------------------------
+
+    public $viewLayout = 'Myth\Auth\Views\layout';
 
     //--------------------------------------------------------------------
     // Authentication
@@ -35,6 +42,55 @@ class Auth extends \Myth\Auth\Config\Auth
     ];
 
     //--------------------------------------------------------------------
+    // Additional Fields for "Nothing Personal"
+    //--------------------------------------------------------------------
+    // The NothingPersonalValidator prevents personal information from
+    // being used in passwords. The email and username fields are always
+    // considered by the validator. Do not enter those field names here.
+    //
+    // An extend User Entity might include other personal info such as
+    // first and/or last names. $personalFields is where you can add
+    // fields to be considered as "personal" by the NothingPersonalValidator.
+    // For example:
+    //     $personalFields = ['firstname', 'lastname'];
+
+    public $personalFields = [];
+
+    //--------------------------------------------------------------------
+    // Password / Username Similarity
+    //--------------------------------------------------------------------
+    //  Among other things, the NothingPersonalValidator checks the
+    //  amount of sameness between the password and username.
+    //  Passwords that are too much like the username are invalid.
+    //
+    //  The value set for $maxSimilarity represents the maximum percentage
+    //  of similarity at which the password will be accepted. In other words, any
+    //  calculated similarity equal to, or greater than $maxSimilarity
+    //  is rejected.
+    //
+    //  The accepted range is 0-100, with 0 (zero) meaning don't check similarity.
+    //  Using values at either extreme of the *working range* (1-100) is
+    //  not advised. The low end is too restrictive and the high end is too permissive.
+    //  The suggested value for $maxSimilarity is 50.
+    //
+    //  You may be thinking that a value of 100 should have the effect of accepting
+    //  everything like a value of 0 does. That's logical and probably true,
+    //  but is unproven and untested. Besides, 0 skips the work involved
+    //  making the calculation unlike when using 100.
+    //
+    //  The (admittedly limited) testing that's been done suggests a useful working range
+    //  of 50 to 60. You can set it lower than 50, but site users will probably start
+    //  to complain about the large number of proposed passwords getting rejected.
+    //  At around 60 or more it starts to see pairs like 'captain joe' and 'joe*captain' as
+    //  perfectly acceptable which clearly they are not.
+    //
+
+    //  To disable similarity checking set the value to 0.
+    //      public $maxSimilarity = 0;
+    //
+    public $maxSimilarity = 50;
+
+    //--------------------------------------------------------------------
     // Allow User Registration
     //--------------------------------------------------------------------
     // When enabled (default) any unregistered user may apply for a new
@@ -42,6 +98,14 @@ class Auth extends \Myth\Auth\Config\Auth
     // controllers and views know not to offer registration.
     //
     public $allowRegistration = true;
+
+    //--------------------------------------------------------------------
+    // Require confirmation registration via email
+    //--------------------------------------------------------------------
+    // When enabled, every registered user will receive an email message
+    // with a special link he have to confirm to activate his account.
+    //
+    public $requireActivation = 'Myth\Auth\Authentication\Activators\EmailActivator';
 
     //--------------------------------------------------------------------
     // Allow Persistent Login Cookies (Remember me)
@@ -130,7 +194,28 @@ class Auth extends \Myth\Auth\Config\Auth
     //
     public $passwordValidators = [
         'Myth\Auth\Authentication\Passwords\CompositionValidator',
-        'Myth\Auth\Authentication\Passwords\DictionaryValidator',
+        'Myth\Auth\Authentication\Passwords\NothingPersonalValidator',
+//        'Myth\Auth\Authentication\Passwords\DictionaryValidator',
+        'Myth\Auth\Authentication\Passwords\PwnedValidator',
     ];
 
+    //--------------------------------------------------------------------
+    // Activator classes
+    //--------------------------------------------------------------------
+    // Avaliable activators with config settings
+    //
+    public $userActivators = [
+        'Myth\Auth\Authentication\Activators\EmailActivator' => [
+            'fromEmail' => null,
+            'fromName' => null,
+        ],
+    ];
+
+    //--------------------------------------------------------------------
+    // Reset Time
+    //--------------------------------------------------------------------
+    // The amount of time that a password reset-token is valid for,
+    // in seconds.
+    //
+    public $resetTime = 3600;
 }

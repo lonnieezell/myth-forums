@@ -59,3 +59,5 @@ module.exports = {
         new MiniCssExtractPlugin()
     ]
 };
+
+// Admin

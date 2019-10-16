@@ -4,17 +4,25 @@ return [
     // Exceptions
     'invalidModel'              => 'The {0} model must be loaded prior to use.',
     'userNotFound'              => 'Unable to locate a user with ID = {0, number}.',
+    'noUserEntity'              => 'User Entity must be provided for password validation.',
     'tooManyCredentials'        => 'You may only validate against 1 credential other than a password.',
     'invalidFields'             => 'The "{0}" field cannot be used to validate credentials.',
     'unsetPasswordLength'       => 'You must set the `minimumPasswordLength` setting in the Auth config file.',
     'unknownError'              => 'Sorry, we encountered an issue sending the email to you. Please try again later.',
-
     'notLoggedIn'               => 'You must be logged in to access that page.',
     'notEnoughPrivilege'        => 'You do not have sufficient permissions to access that page.',
 
     // Registration
     'registerDisabled'          => 'Sorry, new user accounts are not allowed at this time.',
     'registerSuccess'           => 'Welcome aboard! Please login with your new credentials.',
+    'registerCLI'               => 'New user created: {0}, #{1}',
+
+    // Activation
+    'activationNoUser'          => 'Unable to locate a user with that activation code.',
+    'activationSubject'         => 'Activate your account',
+    'activationSuccess'         => 'Please confirm your account by clicking the activation link in the email we have sent.',
+    'notActivated'              => 'This user account is not yet activated.',
+    'errorSendingActivation'    => 'Failed to send activation message to: {0}',
 
     // Login
     'badAttempt'                => 'Unable to log you in. Please check your credentials.',
@@ -28,14 +36,19 @@ return [
 
     // Passwords
     'errorPasswordLength'       => 'Passwords must be at least {0, number} characters long.',
-    'suggestPasswordLength'     => 'Pass phrases - up to 255 characters long - make more secure passwords that are simpler to remember.',
+    'suggestPasswordLength'     => 'Pass phrases - up to 255 characters long - make more secure passwords that are easy to remember.',
     'errorPasswordCommon'       => 'Password must not be a common password.',
     'suggestPasswordCommon'     => 'The password was checked against over 65k commonly used passwords or passwords that have been leaked through hacks.',
     'errorPasswordPersonal'     => 'Passwords cannot contain re-hashed personal information.',
     'suggestPasswordPersonal'   => 'Variations on your email address or username should not be used for passwords.',
-    'errorPasswordEmpty'        => 'Passwords are required.',
+    'errorPasswordTooSimilar'    => 'Password is too similar to the username.',
+    'suggestPasswordTooSimilar'  => 'Do not use parts of your username in your password.',
+    'errorPasswordPwned'        => 'The password {0} has been exposed due to a data breach and has been seen {1, number} times in {2} of compromised passwords.',
+    'suggestPasswordPwned'      => '{0} should never be used as a password. If you are using it anywhere change it immediately.',
+    'errorPasswordEmpty'        => 'A Password is required.',
     'passwordChangeSuccess'     => 'Password changed successfully',
     'userDoesNotExist'          => 'Password was not changed. User does not exist',
+    'resetTokenExpired'         => 'Sorry. Your reset token has expired.',
 
     // Groups
     'groupNotFound'             => 'Unable to locate group: {0}.',
@@ -45,6 +58,9 @@ return [
 
     // Banned
     'userIsBanned'              => 'User has been banned. Contact the administrator',
+
+    // Too many requests
+    'tooManyRequests'           => 'Too many requests. Please wait {0, number} seconds.',
 
     // Login views
     'home'                      => 'Home',
