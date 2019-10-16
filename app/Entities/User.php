@@ -83,6 +83,16 @@ class User extends \Myth\Auth\Entities\User
 	}
 
     /**
+     * Checks to see if a user is active.
+     *
+     * @return bool
+     */
+    public function isActivated(): bool
+    {
+        return isset($this->attributes['active']) && $this->attributes['active'] == true;
+    }
+
+    /**
      * Generates a secure hash to use for password reset purposes,
      * saves it to the instance.
      *
