@@ -77,11 +77,11 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/assets";
+/******/ 	__webpack_require__.p = "";
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -143,14 +143,25 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _nod
 
 /***/ }),
 
-/***/ 0:
-/*!****************************************!*\
-  !*** multi ./themes/admin/js/index.js ***!
-  \****************************************/
+/***/ "./themes/admin/scss/index.scss":
+/*!**************************************!*\
+  !*** ./themes/admin/scss/index.scss ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__(/*! ./themes/admin/js/index.js */\"./themes/admin/js/index.js\");\n\n\n//# sourceURL=webpack:///multi_./themes/admin/js/index.js?");
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./themes/admin/scss/index.scss?");
+
+/***/ }),
+
+/***/ 1:
+/*!***********************************************************************!*\
+  !*** multi ./themes/admin/js/index.js ./themes/admin/scss/index.scss ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("__webpack_require__(/*! ./themes/admin/js/index.js */\"./themes/admin/js/index.js\");\nmodule.exports = __webpack_require__(/*! ./themes/admin/scss/index.scss */\"./themes/admin/scss/index.scss\");\n\n\n//# sourceURL=webpack:///multi_./themes/admin/js/index.js_./themes/admin/scss/index.scss?");
 
 /***/ })
 

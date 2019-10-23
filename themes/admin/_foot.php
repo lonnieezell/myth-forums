@@ -1,4 +1,4 @@
-<script src="<?= asset('front.js') ?>"></script>
+<script src="<?= asset('admin.js') ?>"></script>
 
 <?php $this->renderSection('scripts') ?>
 </body>

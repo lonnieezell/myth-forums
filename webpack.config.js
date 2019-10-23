@@ -1,16 +1,15 @@
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-//
-// Main asset management
-//
 module.exports = {
     mode: 'development',
-    entry: ['./themes/default/js/index.js', './themes/default/scss/index.scss'],
+    entry: {
+        app: ['./themes/default/js/index.js', './themes/default/scss/index.scss'],
+        admin: ['./themes/admin/js/index.js', './themes/admin/scss/index.scss'],
+    },
     output: {
-        filename: 'front.js',
-        path: path.resolve(__dirname, 'public/assets'),
-        publicPath: '/assets'
+        filename: '[name].js',
+        path: __dirname + '/public/assets'
     },
     module: {
         rules: [
@@ -59,5 +58,3 @@ module.exports = {
         new MiniCssExtractPlugin()
     ]
 };
-
-// Admin
