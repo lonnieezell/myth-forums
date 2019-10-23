@@ -31,3 +31,20 @@ function model(string $class, bool $getShared = true)
 {
     return service('models')->factory($class, $getShared);
 }
+
+/**
+ * Returns whether the current URI path matches the given $path.
+ * Supports the '*' wildcard, like:
+ *
+ * is_uri('/forums*')
+ *
+ * @param string $path
+ *
+ * @return bool
+ */
+function has_uri(string $path=''): bool
+{
+    $current = service('request')->uri->getPath();
+
+    return strpos($current, trim($path)) === 0;
+}

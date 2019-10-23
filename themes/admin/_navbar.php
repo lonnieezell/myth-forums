@@ -7,17 +7,20 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
+                <li class="nav-item <?= has_uri('admin/forum') ? 'active' : '' ?>">
                     <a href="<?= route_to('forum-admin') ?>" class="nav-link">Forums</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item <?= has_uri('admin/knowledge') ? 'active' : '' ?>">
                     <a href="#" class="nav-link">Knowledgebase</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item <?= has_uri('admin/users') ? 'active' : '' ?>">
                     <a href="#" class="nav-link">Users & Groups</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item <?= has_uri('admin/settings') ? 'active' : '' ?>">
                     <a href="#" class="nav-link">Settings</a>
+                </li>
+                <li class="nav-item <?= has_uri('admin/tools') ? 'active' : '' ?>">
+                    <a href="#" class="nav-link">Tools</a>
                 </li>
             </ul>
             <ul class="navbar-nav">
