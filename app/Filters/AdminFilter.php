@@ -17,7 +17,7 @@ class AdminFilter implements FilterInterface
      */
 	public function before(RequestInterface $request)
 	{
-	    helper('Auth');
+	    helper('auth');
 
         $current = (string)current_url(true)
             ->setHost('')

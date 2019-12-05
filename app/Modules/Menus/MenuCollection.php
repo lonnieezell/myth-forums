@@ -1,4 +1,4 @@
-<?php namespace Bonfire\Menus;
+<?php namespace Myth\Menus;
 
 /**
  * Represents a collection of menu items.

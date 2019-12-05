@@ -1,4 +1,4 @@
-<?php namespace Bonfire\Menus;
+<?php namespace Myth\Menus;
 
 class Menu
 {

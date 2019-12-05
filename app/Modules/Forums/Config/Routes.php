@@ -12,4 +12,5 @@ $routes->group('forum', ['namespace' => 'Myth\Forums\Controllers'], function($ro
 
 $routes->group('admin/forum', ['namespace' => 'Myth\Forums\Controllers\Admin'], function($routes) {
     $routes->get('/', 'ForumController::index', ['as' => 'forum-admin']);
+    $routes->get('tags', 'TagController::list', ['as' => 'forum-admin-tags']);
 });

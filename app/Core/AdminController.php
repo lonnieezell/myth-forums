@@ -1,8 +1,6 @@
 <?php namespace App\Core;
 
 use App\Theme\MetaCollection;
-use CodeIgniter\View\View;
-use Config\Services;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
@@ -27,6 +25,11 @@ class AdminController extends BaseController
      */
     protected $meta;
 
+    /**
+     * @var Modules
+     */
+    protected $modules;
+
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
         // Ensure our site-wide helpers are loaded without messing up per-controller settings.
@@ -35,8 +38,12 @@ class AdminController extends BaseController
 
         parent::initController($request, $response, $logger);
 
+        // Ensure our menus get built for each module.
+        $this->modules = new Modules();
+        $this->modules->initAdmin();
+
         $this->theme = 'admin';
         $this->setVar('currentUser', user());
+        $this->setVar('mainMenu', Menus::get('admin'));
     }
-
 }

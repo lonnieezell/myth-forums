@@ -16,7 +16,7 @@
             </nav>
 
             <div class="nav-wrapper">
-                <?= $this->renderSection('sidebar') ?>
+                <?= $this->include('_sidebar') ?>
             </div>
         </aside>
 

@@ -56,6 +56,7 @@ class Autoload extends \CodeIgniter\Config\AutoloadConfig
             'Myth\Forums' => APPPATH .'Modules/Forums',
             'Myth\Parsers' => APPPATH .'Modules/Parsers',
             'Myth\Users' => APPPATH .'Modules/Users',
+            'Myth\Menus' => APPPATH .'Modules/Menus',
 		];
 
 		/**
