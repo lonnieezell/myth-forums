@@ -17,6 +17,7 @@ class Module extends BaseModule
         $menu = Menus::get('admin');
 
         $collection = $menu->createCollection('forums', 'Forums');
+        $collection->setFontAwesomeIcon('far fa-comment-alt fa-2x');
 
         // Tags
         $item = (new MenuItem())

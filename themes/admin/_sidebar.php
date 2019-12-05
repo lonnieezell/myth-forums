@@ -3,7 +3,10 @@
         <ul class="nav flex-column">
         <?php foreach($mainMenu->getItems() as $item) : ?>
             <li class="nav-item">
-                <a href="<?= $item->getUrl() ?>" class="nav-link"><?= $item->getTitle() ?></a>
+                <a href="<?= $item->getUrl() ?>" class="nav-link">
+                    <?= $item->getIcon() ?>
+                    <?= $item->getTitle() ?>
+                </a>
             </li>
         <?php endforeach ?>
         </ul>
