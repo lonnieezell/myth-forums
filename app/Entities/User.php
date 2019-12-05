@@ -274,4 +274,16 @@ class User extends \Myth\Auth\Entities\User
 
         return implode(', ', $parts);
 	}
+
+    /**
+     * Determines whether the user is
+     * either an admin or a superadmin
+     *
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        return in_groups(['superadmin', 'admin']);
+	}
+
 }

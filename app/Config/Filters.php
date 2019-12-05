@@ -13,6 +13,7 @@ class Filters extends BaseConfig
         'login'      => \App\Filters\LoginFilter::class,
         'role'       => \Myth\Auth\Filters\RoleFilter::class,
         'permission' => \Myth\Auth\Filters\PermissionFilter::class,
+        'admin'      => \App\Filters\AdminFilter::class
 	];
 
 	// Always applied before every request
@@ -35,5 +36,7 @@ class Filters extends BaseConfig
 	// List filter aliases and any before/after uri patterns
 	// that they should run on, like:
 	//    'isLoggedIn' => ['before' => ['account/*', 'profiles/*']],
-	public $filters = [];
+	public $filters = [
+	    'admin' => ['before' => ['admin*']],
+    ];
 }

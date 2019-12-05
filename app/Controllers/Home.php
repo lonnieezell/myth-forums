@@ -1,6 +1,7 @@
 <?php namespace App\Controllers;
 
 use App\Core\ThemedController;
+use Myth\Auth\AuthTrait;
 
 class Home extends ThemedController
 {

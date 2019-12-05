@@ -1,4 +1,7 @@
 @import "~bootstrap/dist/css/bootstrap.css";
+@import "../css/shards-dashboards.1.1.0.css";
+@import "../css/extras.1.1.0.min.css";
 
 @import 'variables.scss';
+@import "layout";
 @import "sidebar";
