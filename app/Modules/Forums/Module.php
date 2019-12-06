@@ -16,15 +16,12 @@ class Module extends BaseModule
     {
         $menu = Menus::get('admin');
 
-        $collection = $menu->createCollection('forums', 'Forums');
-        $collection->setFontAwesomeIcon('far fa-comment-alt fa-2x');
-
         // Tags
         $item = (new MenuItem())
-            ->setTitle('Tags and Categories')
+            ->setTitle('Tags')
             ->setAltText('Tags')
             ->setFontAwesomeIcon('fas fa-tags')
             ->setNamedRoute('forum-admin-tags');
-        $collection->addItem($item);
+        $menu->addItem($item);
     }
 }

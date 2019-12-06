@@ -28,8 +28,10 @@
 
                 <?= $this->include('_notices') ?>
 
-                <div class="page-header">
-                    <?= $this->renderSection('pageHeader') ?>
+                <div class="page-header row no-gutters py-4">
+                    <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
+                        <?= $this->renderSection('pageHeader') ?>
+                    </div>
                 </div>
 
                 <?= $this->renderSection('content') ?>
