@@ -6,7 +6,12 @@ class Home extends AdminController
 {
 	public function index()
 	{
-		echo $this->render('admin/dashboard');
+	    $db = db_connect();
+
+		echo $this->render('admin/dashboard', [
+		    'dbDriver' => $db->DBDriver,
+            'dbVersion' => $db->getVersion(),
+        ]);
 	}
 
 	//--------------------------------------------------------------------
