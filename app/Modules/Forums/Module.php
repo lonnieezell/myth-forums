@@ -18,7 +18,7 @@ class Module extends BaseModule
 
         // Tags
         $item = (new MenuItem())
-            ->setTitle('Tags')
+            ->setTitle('Forum Tags')
             ->setAltText('Tags')
             ->setFontAwesomeIcon('fas fa-tags')
             ->setNamedRoute('forum-admin-tags');

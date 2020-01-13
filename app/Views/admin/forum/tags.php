@@ -12,11 +12,18 @@
         <div class="col">
             <div class="card card-small mb-4">
                 <div class="card-header border-bottom">
-                    <h6 class="m-0">Primary Tags</h6>
-                    <p class="text-muted">These form the structure of your forums, much like typical categories in other systems.</p>
+                    <div class="row">
+                        <div class="col">
+                            <h6 class="m-0">Primary Tags</h6>
+                            <p class="text-muted">These form the structure of your forums, much like typical categories in other systems.</p>
+                        </div>
+                        <div class="col-auto">
+                            <a href="<?= route_to('forum-admin-new-tag') ?>?type=primary" class="btn btn-outline-secondary"><i class="fas fa-plus"></i> New Tag</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body p-0 pb-3 text-center">
-                    <table class="table table-striped mb-0">
+                    <table class="table table-striped mb-0 text-left">
                         <thead class="bg-light">
                             <tr>
                                 <th scope="col" class="border-0" style="width: 4em">#</th>
@@ -25,6 +32,7 @@
                                 <th scope="col" class="border-0">Slug</th>
                                 <th scope="col" class="border-0">Description</th>
                                 <th scope="col" class="border-0" style="width: 3em">Public</th>
+                                <th scope="col" class="border-0" style="width: 7em">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,11 +63,18 @@
         <div class="col">
             <div class="card card-small mb-4">
                 <div class="card-header border-bottom">
-                    <h6 class="m-0">Secondary Tags</h6>
-                    <p class="text-muted">These are for micro-organization and assist in searches and general categorization.</p>
+                    <div class="row">
+                        <div class="col">
+                            <h6 class="m-0">Secondary Tags</h6>
+                            <p class="text-muted">These are for micro-organization and assist in searches and general categorization.</p>
+                        </div>
+                        <div class="col-auto">
+                            <a href="<?= route_to('forum-admin-new-tag') ?>?type=secondary" class="btn btn-outline-secondary"><i class="fas fa-plus"></i> New Tag</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body p-0 pb-3 text-center">
-                    <table class="table table-striped mb-0">
+                    <table class="table table-striped mb-0 text-left">
                         <thead class="bg-light">
                         <tr>
                             <th scope="col" class="border-0" style="width: 4em">#</th>
@@ -68,6 +83,7 @@
                             <th scope="col" class="border-0">Slug</th>
                             <th scope="col" class="border-0">Description</th>
                             <th scope="col" class="border-0" style="width: 3em">Public</th>
+                            <th scope="col" class="border-0" style="width: 7em">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -93,8 +109,4 @@
         </div>
     </div>
 
-<?= $this->endSection() ?>
-
-<?= $this->section('sidebar') ?>
-    <?= $this->render('admin/forum/_sidebar') ?>
 <?= $this->endSection() ?>
